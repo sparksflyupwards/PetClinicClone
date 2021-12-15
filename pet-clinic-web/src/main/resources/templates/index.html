@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body}, 'home')}">
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
@@ -9,6 +9,15 @@
 <h1 th:text="'Landing Page - Pet Clinic'">
 Home Landing Page - Pet Clinic
 </h1>
+
+<h2 th:text="#{welcome}">Welcome</h2>
+<div class="row">
+    <div class="col-md-12">
+        <img class="img-responsive" src="../static/images/pets.png" th:src="@{/images/pets.png}" alt="failed to load picture of pet"/>
+    </div>
+</div>
+
+
 
 </body>
 </html>
