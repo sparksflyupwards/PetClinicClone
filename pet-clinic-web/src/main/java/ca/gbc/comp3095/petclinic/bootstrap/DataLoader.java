@@ -1,6 +1,7 @@
 package ca.gbc.comp3095.petclinic.bootstrap;
 
 import ca.gbc.comp3095.petclinic.model.Owner;
+import ca.gbc.comp3095.petclinic.model.Pet;
 import ca.gbc.comp3095.petclinic.model.PetType;
 import ca.gbc.comp3095.petclinic.model.Vet;
 import ca.gbc.comp3095.petclinic.services.OwnerService;
@@ -9,6 +10,7 @@ import ca.gbc.comp3095.petclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -31,10 +33,16 @@ public class DataLoader implements CommandLineRunner {
         Owner owner1 = new Owner();
         owner1.setFirstName("Saad");
         owner1.setLastName("Brunssen");
+        owner1.setAddress("First street in mars");
+        owner1.setCity("Toronto");
+        owner1.setTelephone("324235534");
 
         Owner owner2= new Owner();
         owner2.setFirstName("Bruce");
         owner2.setLastName("Wayne");
+        owner2.setAddress("Second street in Japan");
+        owner2.setCity("Vancouver");
+        owner2.setTelephone("1243637");
 
         ownerService.save(owner1);
         ownerService.save(owner2);
@@ -71,6 +79,17 @@ public class DataLoader implements CommandLineRunner {
         while(petTypes.hasNext()){
             System.out.println(petTypes.next().getName());
         }
+
+        Pet frodosPet = new Pet();
+        frodosPet.setPetType(saveDogPetType);
+        frodosPet.setName("yasha");
+        frodosPet.setOwner(owner1);
+        frodosPet.setBirthdate(LocalDate.now());
+        owner1.getPets().add(frodosPet);
+        System.out.println("pets for owner1");
+        owner1.getPets().forEach(pet-> {
+            System.out.println(pet.getName());
+        });
 
 
 
