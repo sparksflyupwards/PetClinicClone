@@ -1,17 +1,18 @@
 package ca.gbc.comp3095.petclinic.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Visit extends BaseEntity{
-    public Date date;
-    public String description;
-    public Pet pet;
+    private LocalDate date;
+    private String description;
+    private Pet pet;
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
