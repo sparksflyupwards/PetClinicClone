@@ -3,11 +3,13 @@ import ca.gbc.comp3095.petclinic.model.Specialty;
 import ca.gbc.comp3095.petclinic.model.Vet;
 import ca.gbc.comp3095.petclinic.services.SpecialtiesService;
 import ca.gbc.comp3095.petclinic.services.VetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default","map"})
 public class VetServiceMap extends AbstractMapService<Vet, Long>  implements VetService {
 
     private final SpecialtiesService specialtiesService;
