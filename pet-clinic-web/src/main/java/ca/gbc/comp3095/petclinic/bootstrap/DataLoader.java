@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -52,8 +53,13 @@ public class DataLoader implements CommandLineRunner {
         owner2.setCity("Vancouver");
         owner2.setTelephone("1243637");
 
+        Owner owner3 = Owner.builder().firstName("Saad").lastName("Khan").address("Two town").city("Mass").pets(new HashSet<>()).build();
+
+
         ownerService.save(owner1);
         ownerService.save(owner2);
+        ownerService.save(owner3);
+
 
         System.out.println("owners loaded");
         System.out.println(owner1);
@@ -85,6 +91,8 @@ public class DataLoader implements CommandLineRunner {
         Vet vet2 = new Vet();
         vet2.setFirstName("Trust");
         vet2.setLastName("Smith");
+
+        Vet vet3 = Vet.builder().firstName("LOVE").lastName("Quinn").specialties(new HashSet<>()).build();
 
         Set<Specialty> specialties2 = vet2.getSpecialties();
         specialties2.add(surgery);

@@ -1,8 +1,13 @@
 package ca.gbc.comp3095.petclinic.model;
 
+import lombok.*;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @MappedSuperclass
 public class Person extends BaseEntity{
 
@@ -11,23 +16,13 @@ public class Person extends BaseEntity{
     @Column(name = "first_name")
     private String firstName;
 
-    public String getLastName() {
-        return lastName;
-    }
 
-    public void setLastName(String lastName) {
+    public Person(Long id, String lastName, String firstName) {
+        super(id);
         this.lastName = lastName;
+        this.firstName = firstName;
     }
 
-
-    public String getFirstName() {
-        return firstName;
+    public Person(String lastName, String firstName) {
     }
-
-    public void setFirstName(String newFirstName) {
-        this.firstName = newFirstName;
-    }
-
-
-
 }
