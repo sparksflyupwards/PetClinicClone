@@ -1,11 +1,13 @@
 package ca.gbc.comp3095.petclinic.services.springDataJPA;
 
 import ca.gbc.comp3095.petclinic.model.Pet;
+import ca.gbc.comp3095.petclinic.model.PetType;
 import ca.gbc.comp3095.petclinic.repositories.PetRepository;
 import ca.gbc.comp3095.petclinic.services.PetService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Service
@@ -29,7 +31,10 @@ public class PetSDJpaService implements PetService {
 
     @Override
     public Set<Pet> findAll() {
-        return (Set<Pet>) petRepository.findAll();
+
+        Set<Pet> petSet = new HashSet<>();
+        petRepository.findAll().forEach(pet -> petSet.add(pet));
+        return petSet;
     }
 
     @Override

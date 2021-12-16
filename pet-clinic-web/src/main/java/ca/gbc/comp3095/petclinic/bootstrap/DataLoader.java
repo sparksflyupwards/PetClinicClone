@@ -1,10 +1,7 @@
 package ca.gbc.comp3095.petclinic.bootstrap;
 
 import ca.gbc.comp3095.petclinic.model.*;
-import ca.gbc.comp3095.petclinic.services.OwnerService;
-import ca.gbc.comp3095.petclinic.services.PetTypeService;
-import ca.gbc.comp3095.petclinic.services.SpecialtiesService;
-import ca.gbc.comp3095.petclinic.services.VetService;
+import ca.gbc.comp3095.petclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -19,12 +16,14 @@ public class DataLoader implements CommandLineRunner {
     private VetService vetService;
     private PetTypeService petTypeService;
     private SpecialtiesService specialtiesService;
+    private VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtiesService specialtiesService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtiesService specialtiesService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtiesService = specialtiesService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -121,5 +120,11 @@ public class DataLoader implements CommandLineRunner {
         owner1.getPets().forEach(pet-> {
             System.out.println(pet.getName());
         });
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(frodosPet);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Frodos pet was sick");
+
     }
 }
